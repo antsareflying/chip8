@@ -1,0 +1,21 @@
+4096 bytes ram
+16 general purpose 8bit registers
+delay timer 8 bit
+sound timer 8 bit
+index register 16 bit, used to store memory addresses
+program counter 16 bit, points to the address in memory of the current instruction
+stack pointer 8 or 16-bit, depending on the size of your stack that points to the top of the stack
+The stack, a LIFO array of 16-bit values used for subroutines
+The keyboard, which contains 16 keys used as input
+The buzzer, used to spit out beep sounds
+
+MEMORY
+
+0x000 to 0x200 - reserved for system
+0x200 to 0xFFF - program memory
+
+DIDPLAY 
+
+64 width
+32 height
+
