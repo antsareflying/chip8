@@ -1,3 +1,4 @@
 *.exe
 CppProperties.json
 .vs
+*.o
