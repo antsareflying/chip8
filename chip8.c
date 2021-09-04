@@ -66,3 +66,26 @@ void chip8_initialise(void)
 	delay_timer = 0;
 	sound_timer = 0;
 }
+
+int chip8_load_program(char* program_name)
+{
+	uint8_t buffer[4096-512] = {0};
+
+	/*read program into buffer*/
+	FILE* fp = fopen(program_name, "rb");
+	if(!fp);
+	{
+		fprintf(stderr, "Error opening program file");
+		return 1;
+	}
+	fread(buffer, 1, 4096-512, fp);
+	fclose(fp);
+
+	/*load program from buffer to memory at address 0x200*/
+	for(int i = 0; i < 4096-512; i++)
+	{
+		memory[512+i] = buffer[i];
+	}
+
+	return 0;
+}
