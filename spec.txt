@@ -1,5 +1,5 @@
-4096 bytes ram
-16 general purpose 8bit registers
+4096 bytes ram 
+16 general purpose 8bit registers 
 delay timer 8 bit
 sound timer 8 bit
 index register 16 bit, used to store memory addresses
@@ -18,4 +18,22 @@ DIDPLAY
 
 64 width
 32 height
+
+INITIALISE
+set registers and pointers
+
+LOOP
+fetch opcode
+decode opcode
+execute opcode
+
+updat itmers
+
+LOAD PROGRAM
+load program into memory at address 0x200
+
+
+
+
+
 
