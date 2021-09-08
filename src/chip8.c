@@ -238,6 +238,46 @@ void chip8_fetch_decode_execute(void)
 		case 0xE000:
 			break;
 		case 0xF000:
+			switch(opcode & 0x00FF)
+				case 0x07:
+					V[X] = delay_timer;
+					PC += 2;
+					break;
+				case 0x0A:
+					break;
+				case 0x15:
+					delay_timer = V[X];
+					PC += 2;
+					break;
+				case 0x18:
+					sound_timer = V[X];
+					PC += 2;
+					break;
+				case 0x1E:
+					I += V[X];
+					PC += 2;
+					break;
+				case 0x29:
+					break;
+				case 0x33:
+					
+					break;
+				case 0x55:
+					for(int i = 0; i < X; i++)
+					{
+						memory[I + i] = V[i];
+					}
+					I += X + 1;
+					PC += 2;
+					break;
+				case 0x65:
+					for(int i = 0; i < X; i++)
+					{
+						V[i] = memory[I + i];
+					}
+					I += X + 1;
+					PC += 2;
+					break;
 			break;
 		default:
 			unknown_opcode(opcode);
