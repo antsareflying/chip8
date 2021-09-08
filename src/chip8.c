@@ -132,11 +132,21 @@ void chip8_fetch_decode_execute(void)
 	switch(opcode & 0xF000)
 	{
 		case 0x0000:
+			switch(opcode & 0x00FF)
+				case 0x00E0:
+					/*disp_clear()*/
+					break;
+				case 0x00EE: /* 00EE returns from subroutine. PC set to addr at top of stack, SP decremented*/
+					PC = stack[SP];
+					SP--;
+					break;
 			break;
 		case 0x1000: /*1NNN jumps to address NNN*/
 			PC = opcode & 0xFFF;
 			break;
-		case 0x2000:
+		case 0x2000: /*2NNN increments stack pointer, puts PC on stack then PC set to NNN*/
+			stack[SP++] = PC;
+			PC = opcode & 0x0FFF;
 			break;
 		case 0x3000: /*3XNN Skips the next instruction if VX equals NN*/
 			PC += (V[X] == (opcode & 0x00FF)) ? 4 : 2;
